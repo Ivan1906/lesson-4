@@ -12,7 +12,6 @@ class AppSearch extends Component {
         return(
             <input type="text"
                 className="AppSearch" 
-                ref="searchInput"
                 placeholder="Enter title"
                 onChange={this.onChangeChild.bind(this)} />
         )
