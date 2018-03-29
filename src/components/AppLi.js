@@ -15,9 +15,9 @@ class AppLi extends Component {
 }
 
 AppLi.protoTypes = {
-    index: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired
+    index: PropTypes.number,
+    title: PropTypes.string,
+    body: PropTypes.string
 }
 
 AppLi.defaultProps = {

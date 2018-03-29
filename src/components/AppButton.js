@@ -16,11 +16,11 @@ class AppButton extends Component {
 
 AppButton.protoTypes = {
     text: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func.isRequired
 }
 
 AppButton.defaultProps = {
-    text: "Добавити 10 записів"
+    text: "Назва за замовчуванням"
 }
 
 export default AppButton;

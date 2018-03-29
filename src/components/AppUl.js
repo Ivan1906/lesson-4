@@ -17,7 +17,7 @@ class AppUl extends Component {
 }
 
 AppUl.protoTypes = {
-    items: PropTypes.array
+    items: PropTypes.arrayOf(PropTypes.object)
 }
 
 AppUl.defaultProps = {

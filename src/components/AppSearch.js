@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import "./AppSearch.css";
 
 class AppSearch extends Component {
+
+    onChangeChild(event) {
+        this.props.onChange(event);
+    }
+
     render() {
-        const { onChange } = this.props;
         return(
             <input type="text"
                 className="AppSearch" 
+                ref="searchInput"
                 placeholder="Enter title"
-                onChange={onChange} />
+                onChange={this.onChangeChild.bind(this)} />
         )
     }
 }

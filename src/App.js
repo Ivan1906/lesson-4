@@ -6,70 +6,75 @@ import AppSearch from './components/AppSearch';
 import AppUl from './components/AppUl';
 import DBpost from './data.json';
 
+const textAddPost = "Добавити нових постів";
+const textNone = "Записів для добавлення немає";
+
 class App extends Component {
 
   constructor() {
     super();
 
     this.state = {
-      textButton: '',
-      allCount: DBpost.length,
+      textButton: "",
       count: 10,
       step: 10,
       db: []
     };
 
     this.onClick = this.onClick.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);    
   }
 
   componentDidMount() {
-    this.setState((prevState) => {
-      return {db: DBpost.slice(0, prevState.count)};
-    });
-    this.setState((prevState) => {
-      return {textButton: `Добавити ${prevState.step} нових постів`}
+    this.setState({
+      db: DBpost,
+      textButton: textAddPost
     });
   }
 
   onClick() {
-    const { allCount, count, step } = this.state;
-    if (count < allCount) {
+    const { count, step, db } = this.state;
+    if (count < db.length) {
       this.setState((prevState) => {
-        return prevState.count + step < allCount ? {count: prevState.count + step} : {count: allCount};
-      });
-      this.setState((prevState) => {
-        return {db: DBpost.slice(0, prevState.count)}
+        return {
+          count: prevState.count + step < prevState.db.length ? prevState.count + step : prevState.db.length,
+          textButton: textAddPost
+        }
       });
     } else {
-      this.setState((prevState) => {
-        return {textButton: ""}
-      });
+      this.setState({textButton: textNone});
     }
   };
 
   onChange(event) {
+    let searchText = event.target.value;
     this.setState((prevState) => {
-      return {db: DBpost.reduce((prevValue, elem) => {
-        let searchText = event.target.value;
-        return elem.title.includes(searchText) ? 
+      return {
+        db: DBpost.reduce((prevValue, elem) => {
+          return elem.title.includes(searchText) ? 
           prevValue
             .concat(elem)
-            .sort((a, b) => 
-              (a.title > b.title) ? 1 : (a.title < b.title) ? -1 : 0
-            ) : 
+            .sort((a, b) => (a.title > b.title) ? 1 : (a.title < b.title) ? -1 : 0) : 
           prevValue;
-      }, [])}
+      }, []),
+        count: 10
+    }
+    });
+    this.setState((prevState) => {
+      return {
+        textButton: prevState.db.length !== 0 ? textAddPost : textNone
+      }
     });
   }
 
   render() {
+    let { count, textButton, db } = this.state;
     return (
       <div className="App">
         <AppSearch onChange={this.onChange}/>
-        <h1>Кількість записів {this.state.count}</h1>
-        <AppUl items={this.state.db} />
-        <AppButton text={this.state.textButton} onClick={this.onClick} />
+        <h1>Кількість записів {count}</h1>
+        <AppUl items={db.slice(0, count)} />
+        <AppButton text={textButton} onClick={this.onClick} />
       </div>
     );
   }
