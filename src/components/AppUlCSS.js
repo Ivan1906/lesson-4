@@ -1,3 +1,5 @@
 import styled from 'styled-components';
 
-const
+const App = styled.button``
+
+export default App;
