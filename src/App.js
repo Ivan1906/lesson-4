@@ -16,7 +16,7 @@ class App extends Component {
 
     this.state = {
       count: 10,
-      step: 10,
+      step: 33,
       db: DBpost
     };
 
