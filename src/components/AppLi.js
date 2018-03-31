@@ -22,8 +22,10 @@ AppLi.protoTypes = {
 
 AppLi.defaultProps = {
     index: 0,
-    title: "Не має назви.",
-    body: "Не має опису."
+    item: {
+        title: "Не має назви.",
+        body: "Не має опису."
+    }
 }
 
 export default AppLi;

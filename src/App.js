@@ -16,7 +16,7 @@ class App extends Component {
 
     this.state = {
       count: 10,
-      step: 33,
+      step: 10,
       db: DBpost
     };
 
@@ -41,15 +41,15 @@ class App extends Component {
     let searchText = event.target.value;
     this.setState((prevState) => {
       return {
-        db: DBpost.reduce((prevValue, elem) => {
-          return elem.title.includes(searchText) 
-              ? prevValue
-                  .concat(elem)
-                  .sort((a, b) => 
-                    (a.title > b.title) ? 1 : 
-                      (a.title < b.title) ? -1 : 0) 
-              : prevValue;
-      }, [])
+        db: searchText !=="" 
+              ? DBpost.reduce((newDB, elem) => {
+                  return elem.title.includes(searchText)
+                          ? newDB.concat(elem).sort((a, b) => 
+                              (a.title > b.title) ? 1 : 
+                                (a.title < b.title) ? -1 : 0) 
+                          : newDB 
+                }, [])
+              : DBpost
     }});
     this.setState((prevState) => {
       return {
