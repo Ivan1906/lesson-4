@@ -64,7 +64,8 @@ class App extends Component {
     let { count, step, db } = this.state;
     return (
       <div className="App">
-        <AppSearch onChange={this.onChange}/>
+        <AppSearch 
+          onChange={this.onChange} />
         <h1>Кількість записів {count}</h1>
         <AppUl items={db.slice(0, count)} />
         <AppButton 
