@@ -12,7 +12,7 @@ class AppSearch extends Component {
         return(
             <input type="text"
                 className="AppSearch" 
-                placeholder="Enter title"
+                placeholder="Введіть назву поста"
                 onChange={this.onChangeChild.bind(this)} />
         )
     }

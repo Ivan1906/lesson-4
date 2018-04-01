@@ -25,19 +25,21 @@ class App extends Component {
   }
 
   onClick() {
+    debugger;
     const { count, step, db } = this.state;
     if (count < db.length) {
       this.setState((prevState) => {
         return {
-          count: prevState.count + step < DBpost.length 
+          count: prevState.count + step < prevState.db.length 
                   ? prevState.count + step 
-                  : DBpost.length
+                  : prevState.db.length
         }
       });
     }
   };
 
   onChange(event) {
+    debugger;
     let searchText = event.target.value;
     this.setState((prevState) => {
       return {
